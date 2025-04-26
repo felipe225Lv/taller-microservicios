@@ -17,3 +17,5 @@ app = FastAPI(
     },
 )
 
+app.include_router(Animal_routes.router, prefix="api/v1/animal")
+app.include_router(Cage_routes.router, prefix="api/v1/cage")
