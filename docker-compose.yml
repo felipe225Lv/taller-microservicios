@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  db:
+    image: mysql:8.0 
+    container_name: mysql_eam
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./Config/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "200525"
+      MYSQL_DATABASE: "eam_db"
+    hostname: apps_database
+    networks:
+      - eam_apps
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p200525"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+#--------------------------------------------------------------------
+  fastapi:
+    build:
+      context: ./FASTAPI
+      dockerfile: Dockerfile
+    container_name: fastapi_app 
+    restart: always
+    ports:
+      - "8000:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - eam_apps
+# --------------------------------------------------------------------
+  adminer:
+    image: adminer
+    container_name: adminer_wms
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - eam_apps
+# --------------------------------------------------------------------
+
+networks:
+  eam_apps:
+    driver: bridge

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from db.session import get_db
-from Schemes.Animal_Scheme import AnimalCreate, AnimalResponse
-from Services.Animal_Service import create_animal, read_animal, read_animals, delete_animal
+from fastApi.db.session import get_db
+from fastApi.Schemes.Animal_Scheme import AnimalCreate, AnimalResponse
+from fastApi.Services.Animal_Service import create_animal, get_animal, get_all_animals, delete_animal
 
 router = APIRouter(
     prefix="/animals",
@@ -15,7 +15,7 @@ def create_animal_route(animal: AnimalCreate, db: Session = Depends(get_db)):
 
 @router.get("/{animal_id}", response_model=AnimalResponse)
 def get_animal_route(animal_id: int, db: Session = Depends(get_db)):
-    return read_animal(animal_id=animal_id, db=db)
+    return get_animal(animal_id=animal_id, db=db)
 
 @router.delete("/{animal_id}")
 def delete_animal_route(animal_id: int, db: Session = Depends(get_db)):
@@ -23,4 +23,4 @@ def delete_animal_route(animal_id: int, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=list[AnimalResponse])
 def get_animals_route(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    return read_animals(skip=skip, limit=limit, db=db)
+    return get_all_animals(skip=skip, limit=limit, db=db)
