@@ -4,3 +4,6 @@
 # Ignorar los archivos de cache de Python
 __pycache__/
 *.py[cod]
+*.pyc
+*.pyo
+*.pyd

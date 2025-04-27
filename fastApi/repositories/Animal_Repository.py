@@ -17,5 +17,6 @@ def remove_animal(db: Session, animal_id: int):
     db.commit()
     return deleted
 
-def find_all_animals(db: Session):
-    return db.query(Animal).all()
+def find_all_animals(db: Session, skip: int = 0, limit: int = 10):
+    return db.query(Animal).offset(skip).limit(limit).all()
+
