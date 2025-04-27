@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from fastApi.models.Cage import Cage
-from fastApi.Schemes.Cage_Scheme import CageCreate
+from models.Cage import Cage
+from Schemes.Cage_Scheme import CageCreate
 
 def save_cage(db: Session, cage: CageCreate):
     db_cage = Cage(**cage.dict())

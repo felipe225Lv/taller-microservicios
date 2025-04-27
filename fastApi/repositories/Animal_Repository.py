@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from fastApi.models.Animal import Animal
-from fastApi.Schemes.Animal_Scheme import AnimalCreate
+from models.Animal import Animal
+from Schemes.Animal_Scheme import AnimalCreate
 
 def save_animal(db: Session, animal: AnimalCreate):
     db_animal = Animal(**animal.dict())

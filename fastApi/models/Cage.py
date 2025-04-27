@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from fastApi.db.database import Base
+from db.database import Base
 
 class Cage(Base):
     __tablename__ = "cages"

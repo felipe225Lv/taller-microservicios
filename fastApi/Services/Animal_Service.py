@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from fastApi.models.Animal import Animal
-from fastApi.repositories.Animal_Repository import save_animal, find_animal, find_all_animals, remove_animal
+from models.Animal import Animal
+from repositories.Animal_Repository import save_animal, find_animal, find_all_animals, remove_animal
 
 def get_all_animals(db: Session, skip: int = 0, limit: int = 10):
     return find_all_animals(db, skip=skip, limit=limit)

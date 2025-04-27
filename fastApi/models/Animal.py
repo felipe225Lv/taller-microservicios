@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from fastApi.db.database import Base
+from db.database import Base
 
 class Animal(Base):
     __tablename__ = "animals"

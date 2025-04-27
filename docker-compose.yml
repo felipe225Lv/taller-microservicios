@@ -42,7 +42,7 @@ services:
       - eam-elecitva-balancer
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adminer.rule=PathPrefix(`/adminertrei`)"
+      - "traefik.http.routers.adminer.rule=PathPrefix(`/adminer)"
       - "traefik.http.services.adminer.loadbalancer.server.port=8080"
       - "traefik.http.routers.adminer.entrypoints=web"
 
@@ -51,7 +51,7 @@ services:
       context: ./fastApi
     deploy:
       mode: replicated
-      replicas: 4
+      replicas: 1
       resources:
         limits:
           cpus: '0.75'
