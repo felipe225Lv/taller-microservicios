@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from fastApi.models.Cage import Cage
-from fastApi.repositories.Cage_Repository import find_cage, save_cage, find_all_cage, remove_cage
+from models.Cage import Cage
+from repositories.Cage_Repository import find_cage, save_cage, find_all_cage, remove_cage
 
-def get_all_cages(db: Session):
-    return find_all_cage(db)
+def get_all_cages(db: Session, skip: int = 0, limit: int = 10):
+    return find_all_cage(db, skip=skip, limit=limit)
 
 def create_cage(db: Session, cage: Cage):
     return save_cage(db, cage)

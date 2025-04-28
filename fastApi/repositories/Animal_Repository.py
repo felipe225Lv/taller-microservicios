@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from fastApi.models.Animal import Animal
-from fastApi.Schemes.Animal_Scheme import AnimalCreate
+from models.Animal import Animal
+from Schemes.Animal_Scheme import AnimalCreate
 
 def save_animal(db: Session, animal: AnimalCreate):
     db_animal = Animal(**animal.dict())
@@ -19,4 +19,3 @@ def remove_animal(db: Session, animal_id: int):
 
 def find_all_animals(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Animal).offset(skip).limit(limit).all()
-

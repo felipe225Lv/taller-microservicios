@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
-from fastApi.Schemes.Cage_Scheme import CageResponse
+from Schemes.Cage_Scheme import CageResponse
 
 class AnimalBase(BaseModel):
     species: str
