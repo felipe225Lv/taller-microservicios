@@ -11,16 +11,16 @@ router = APIRouter(
 
 @router.post("/", status_code=201, response_model=AnimalResponse)
 def create_animal_route(animal: AnimalCreate, db: Session = Depends(get_db)):
-    return create_animal(animal=animal, db=db)
+    return create_animal(db, animal)
 
 @router.get("/{animal_id}", response_model=AnimalResponse)
 def get_animal_route(animal_id: int, db: Session = Depends(get_db)):
-    return get_animal(animal_id=animal_id, db=db)
+    return get_animal(db, animal_id)
 
 @router.delete("/{animal_id}")
 def delete_animal_route(animal_id: int, db: Session = Depends(get_db)):
-    return delete_animal(animal_id=animal_id, db=db)
+    return delete_animal(db, animal_id)
 
 @router.get("/", response_model=list[AnimalResponse])
 def get_animals_route(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    return get_all_animals(skip=skip, limit=limit, db=db)
+    return get_all_animals(db, skip=skip, limit=limit)

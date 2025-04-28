@@ -8,8 +8,8 @@ import os
 
 # FastAPI app
 app = FastAPI(
-    title="FastAPI Example",
-    root_path="",
+    title="FastAPI Animals By Esteban and Felipe",
+    root_path="/api",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
@@ -19,6 +19,6 @@ app = FastAPI(
     },
 )
 
-app.include_router(animal_router, prefix="/api/v1/animal")
-app.include_router(cage_router, prefix="/api/v1/cage")
+app.include_router(animal_router, prefix="/api/v1")
+app.include_router(cage_router, prefix="/api/v1")
 

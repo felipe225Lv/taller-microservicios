@@ -19,4 +19,3 @@ def remove_animal(db: Session, animal_id: int):
 
 def find_all_animals(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Animal).offset(skip).limit(limit).all()
-
